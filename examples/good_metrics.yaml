@@ -1,0 +1,60 @@
+# Synthetic metric definitions that pass the Model Swap Test.
+metrics:
+  - name: revenue
+    meaning: finance
+    owner: finance-analytics
+    formula: "sum(recognized_amount) where recognition_status = 'posted'"
+    certified_source: finance.mart.recognized_revenue
+    aliases:
+      - recognized_revenue
+      - net_revenue
+    grain: one row per posted recognition event
+    clock: fiscal
+    freshness:
+      as_of: previous_business_day
+      max_lag: "1d"
+    access:
+      inherit_from: asking_user
+    reconciliation:
+      question: Recognized revenue for fiscal year 2026
+      certified_value: 1842000
+      tolerance: 1
+
+  - name: revenue
+    meaning: sales
+    owner: sales-operations
+    formula: "sum(booking_amount) where stage = 'closed_won'"
+    certified_source: sales.mart.booked_revenue
+    aliases:
+      - bookings
+      - closed_won_revenue
+    grain: one row per closed won opportunity
+    clock: calendar
+    freshness:
+      as_of: previous_business_day
+      max_lag: "1d"
+    access:
+      inherit_from: asking_user
+    reconciliation:
+      question: Booked revenue for calendar year 2026
+      certified_value: 2415000
+      tolerance: 1
+
+  - name: active_customers
+    meaning: product
+    owner: product-analytics
+    formula: "count(distinct customer_id) where last_activity is within 28 days of as_of"
+    certified_source: product.mart.active_customers
+    aliases:
+      - active_customer_count
+    grain: one row per customer per day
+    clock: calendar
+    freshness:
+      as_of: previous_calendar_day
+      max_lag: "1d"
+    access:
+      inherit_from: asking_user
+    reconciliation:
+      question: Active customers for the 28 day window ending 2026-11-01
+      certified_value: 48210
+      tolerance: 0

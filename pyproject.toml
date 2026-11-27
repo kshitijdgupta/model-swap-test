@@ -1,0 +1,30 @@
+[project]
+name = "model-swap-test"
+version = "0.1.0"
+description = "Score metric definitions against the four Model Swap Test contracts."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [{ name = "Kshitij D Gupta" }]
+dependencies = ["pyyaml"]
+
+[project.urls]
+Homepage = "https://github.com/kshitijdgupta/model-swap-test"
+Essay = "https://kshitijdgupta.substack.com/p/the-model-is-interchangeable-your"
+
+[project.scripts]
+model-swap-test = "model_swap_test.cli:cli"
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
