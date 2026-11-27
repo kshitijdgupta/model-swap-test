@@ -1,0 +1,25 @@
+Model Swap Test: FAIL
+File: examples/bad_metrics.yaml
+Metrics checked: 3
+
+Meaning: FAIL (5 findings)
+- revenue #1: ambiguous name "revenue" has a second meaning that is not labeled
+- revenue #2: ambiguous name "revenue" has a second meaning that is not labeled
+- revenue #2: missing owner
+- order_count: missing formula
+- order_count: missing certified source
+
+Grain and freshness: FAIL (3 findings)
+- revenue #1: missing freshness
+- order_count: missing grain
+- order_count: missing clock
+
+Access: FAIL (2 findings)
+- revenue #2: no access policy
+- order_count: access is not inherited from the asking user
+
+Reconciliation: FAIL (1 finding)
+- order_count: no reconciliation test
+
+Contracts passed: 0/4
+Overall score: 0.00

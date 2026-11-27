@@ -1,0 +1,14 @@
+Model Swap Test: PASS
+File: examples/good_metrics.yaml
+Metrics checked: 3
+
+Meaning: PASS
+
+Grain and freshness: PASS
+
+Access: PASS
+
+Reconciliation: PASS
+
+Contracts passed: 4/4
+Overall score: 1.00
